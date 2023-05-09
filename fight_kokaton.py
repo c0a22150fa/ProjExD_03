@@ -26,7 +26,6 @@ def check_bound(area: pg.Rect, obj: pg.Rect) -> tuple[bool, bool]:
         tate = False
     return yoko, tate
 
-
 class Bird:
     """
     ゲームキャラクター（こうかとん）に関するクラス
@@ -89,7 +88,6 @@ class Bird:
             self._img = self._imgs[tuple(sum_mv)]  # 押されたキーの合計値
         screen.blit(self._img, self._rct)
 
-
 class Bomb:
     """
     爆弾に関するクラス
@@ -121,8 +119,7 @@ class Bomb:
             self._vy *= -1
         self._rct.move_ip(self._vx, self._vy)
         screen.blit(self._img, self._rct)
-
-
+        
 class Beam:
     """
     ビームに関するクラス
@@ -161,9 +158,8 @@ class Explosion:
         if self._life > 0:
             screen.blit(exp[0], )
         
-
-
-
+        
+        
 def main():
     pg.display.set_caption("たたかえ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
