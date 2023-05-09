@@ -2,7 +2,7 @@ from pyclbr import Class
 import random
 import sys
 import time
-
+from tkinter import messagebox
 import pygame as pg
 
 
@@ -175,6 +175,7 @@ def main():
     beam = None
 
     tmr = 0
+    count = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -183,6 +184,7 @@ def main():
                 beam = Beam(bird)
 
         tmr += 1
+    
         screen.blit(bg_img, [0, 0])
         
         
@@ -193,19 +195,19 @@ def main():
                 bird.change_img(8, screen)
                 pg.display.update()
                 time.sleep(1)
+                messagebox.showinfo("結果", str(count)+"個落とした")
                 return
             
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
 
-        sc = 1
         if beam is not None:  # ビームが存在しているとき
             beam.update(screen)
             for i, bomb in enumerate(bombs):
                 if beam._rct.colliderect(bomb._rct):
                     beam = None
-                    del bombs[i]
-                    
+                    del bombs[i]  
+                    count += 1
                     bird.change_img(6, screen)
                     break
 
