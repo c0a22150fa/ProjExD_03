@@ -41,26 +41,20 @@ class Bird:
         引数1 num：こうかとん画像ファイル名の番号
         引数2 xy：こうかとん画像の位置座標タプル
         """
-        self._img = pg.transform.flip(  # 左右反転
-            pg.transform.rotozoom(  # 2倍に拡大
-                pg.image.load(f"ex03/fig/{num}.png"), 
-                0, 
-                2.0), 
-            True, 
-            False
-        )
-        img0 = pg.transform.rotozoom(pg.image.load(f"fig/{num}.png")0, 2.0)
-        img1 = pg.transform.flip(img0, True,)
-        self,_imgs = {
-            (+1, 0): img1, 
-            (+1, -1):pg.transform.rotozoom(img1, 45, 1.0),
-            (0, -1): pg.transform.rotozoom(img1, 90, 1.0),
-            (-1, -1): pg.transform.rotozoom(img0, -45, 1.0),
-            (-1, 0): img0,
-            (-1, +1): pg.transform.rotozoom(img0, 45, 1.0), 
-            (0, +1): pg.transform.rotozoom(img1, -90, 1.0),
-            (+1, +1):pg.transform.rotozoom(img1, 90, 1.0)
+        
+        img0 = pg.transform.rotozoom(pg.image.load(f"ex03/fig/{num}.png"), 0, 2.0)  # 左向き，2倍
+        img1 = pg.transform.flip(img0, True, False)  # 右向き，2倍
+        self._imgs = {
+            (+1, 0): img1,  # 右
+            (+1, -1): pg.transform.rotozoom(img1, 45, 1.0),  # 右上
+            (0, -1): pg.transform.rotozoom(img1, 90, 1.0),  # 上
+            (-1, -1): pg.transform.rotozoom(img0, -45, 1.0), # 左上
+            (-1, 0): img0,  # 左
+            (-1, +1): pg.transform.rotozoom(img0, 45, 1.0),  # 左下
+            (0, +1): pg.transform.rotozoom(img1, -90, 1.0),  # 下
+            (+1, +1): pg.transform.rotozoom(img1, -45, 1.0),  # 右下
         }
+        self._img = self._imgs[(+1, 0)]   # デフォルトで右      
         self._rct = self._img.get_rect()
         self._rct.center = xy
 
