@@ -170,8 +170,9 @@ def main():
                 beam = None
                 bomb = None
                 bird.change_img(6, screen)
+
         pg.display.update()
-        clock.tick(1000)
+        clock.tick(100)
 
 
 if __name__ == "__main__":
