@@ -198,6 +198,7 @@ def main():
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
 
+        sc = 1
         if beam is not None:  # ビームが存在しているとき
             beam.update(screen)
             for i, bomb in enumerate(bombs):
